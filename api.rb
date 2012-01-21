@@ -36,10 +36,7 @@ module Quotes
     def self.get
       fetcher = self.new
       quote = Hash.new('')
-      while quote['quote'].size == 0 || quote['quote'].size > 160
-        response = fetcher.get
-        quote = fetcher.parse response
-      end
+      quote = fetcher.parse(fetcher.get) while quote['quote'].size == 0 || quote['quote'].size > 160
       quote
     end
   end
@@ -51,8 +48,7 @@ module Quotes
     end
 
     def self.get
-      fetcher = self.new
-      response = fetcher.get
+      self.new.get
     end
   end
 end
