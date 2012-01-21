@@ -14,7 +14,7 @@ set :user,    'deployer'
 namespace :deploy do
 
   task :start do
-    run "cd #{current_path} && export RUBYOPT=-Ku && bundle exec unicorn -c config/unicorn.rb -E production -p 7171 -D config.ru"
+    run "cd #{current_path} && export RUBYOPT=-Ku && bundle install && bundle exec unicorn -c config/unicorn.rb -E production -p 7171 -D config.ru"
   end
 
   task :stop do
