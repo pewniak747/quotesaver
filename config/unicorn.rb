@@ -7,7 +7,7 @@ working_directory APP_ROOT
 
 pid "#{SHARED_PATH}/pids/quotesaver.pid"
 
-listen 8002
+listen 7171
 
 stderr_path "#{SHARED_PATH}/log/quotesaver.stderr.log"
 stdout_path "#{SHARED_PATH}/log/quotesaver.stdout.log"
