@@ -17,18 +17,16 @@ window.App =
       '''
   getQuote: =>
     $.ajax 'quote.json', dataType: 'json', success: (response) =>
-      $('#quote').fadeTo 'normal', 0.01, ->
-        $(@).html(App.template(response))
-        $(window).trigger 'resize'
-        $(@).fadeTo('normal', 1)
+      $('#quote').html(App.template(response))
+      $(window).trigger 'resize'
 
 $(document).ready ->
   $(window).resize ->
     $('#quote').css('top', $(window).height()/2 - $('#quote').outerHeight()/2)
   .resize()
   $('#quote').hover ->
-    $('#actions').fadeIn()
-  , -> $('#actions').fadeOut()
+    $('#actions').fadeIn('fast')
+  , -> $('#actions').fadeOut('fast')
   $('#next').live 'click', (e)->
     e.preventDefault()
     App.getQuote()
