@@ -1,0 +1,8 @@
+*.swp
+*.swo
+.sass-cache/*
+public/css/
+public/index.html
+public/js/
+public/templates/
+

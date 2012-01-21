@@ -1,0 +1,55 @@
+*
+  margin: 0
+  padding: 0
+
+html, body
+  height: 100%
+  width: 100%
+  background-position: center center
+  font-family: 'Georgia'
+  background: -webkit-gradient(radial, center center, 100, center center, 1000, from(#fff), to(#ddd))
+
+#quote
+  width: 800px
+  margin: auto
+  position: relative
+  padding: 30px 50px
+  blockquote#content
+    font-weight: bold
+    font-size: 3.5em
+    text-align: justify
+    color: #333
+    z-index: 10
+  #mark
+    font-size: 500px
+    color: #ddd
+    float: left
+    width: 0
+    margin: -125px 0 0 -200px
+    z-index: 1
+  #author
+    font-style: italic
+    text-align: right
+    font-size: 1.2em
+    margin: 30px 0 0 0
+    color: #555
+    float: right
+    &:before
+      content: '- '
+  #actions
+    color: #bbb
+    display: none
+    margin: 10px 0 0 10px
+    a
+      color: #999
+      text-decoration: none
+
+#footer
+  position: absolute
+  bottom: 0
+  right: 0
+  padding: 5px
+  font-size: 10px
+  color: #aaa
+  a
+    color: #999
