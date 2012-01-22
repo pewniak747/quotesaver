@@ -7,6 +7,8 @@ window.App =
         <div id='mark'>&ldquo;</div>
         <blockquote id='content'>{{quote}}</blockquote>
         <div id='author'>{{author}}</div>
+      '''
+    @actions_template = _.template '''
         <div id='actions'>
           {# if(typeof(tweet)!='undefined') { #}
           <a href='{{tweet}}' id='tweet' target='_new'>tweet it</a>
@@ -18,15 +20,13 @@ window.App =
   getQuote: =>
     $.ajax 'quote.json', dataType: 'json', success: (response) =>
       $('#quote').html(App.template(response))
+      $('#actions').replaceWith(App.actions_template(response))
       $(window).trigger 'resize'
 
 $(document).ready ->
   $(window).resize ->
     $('#quote').css('top', $(window).height()/2 - $('#quote').outerHeight()/2)
   .resize()
-  $('#quote').hover ->
-    $('#actions').fadeIn('fast')
-  , -> $('#actions').fadeOut('fast')
   $('#next').live 'click', (e)->
     e.preventDefault()
     App.getQuote()

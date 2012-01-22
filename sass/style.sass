@@ -1,3 +1,7 @@
+@font-face
+  font-family: GeoSansLight
+  src: url('/fonts/GeosansLight.ttf')
+
 *
   margin: 0
   padding: 0
@@ -6,21 +10,22 @@ html, body
   height: 100%
   width: 100%
   background-position: center center
-  font-family: 'Georgia'
+  font-family: 'GeoSansLight', 'Georgia', sans-serif
   background: -webkit-gradient(radial, center center, 100, center center, 1000, from(#fff), to(#ddd))
+  background: -moz-gradient(radial, center center, 100, center center, 1000, from(#fff), to(#ddd))
 
 #quote
   width: 800px
   margin: auto
   position: relative
   padding: 30px 50px
+  font-family: 'Georgia'
   blockquote#content
     font-weight: bold
     font-size: 3.5em
-    text-align: justify
-    text-justify: newspaper
     color: #333
     z-index: 10
+    text-align: justify
   #mark
     font-size: 500px
     height: 250px
@@ -39,20 +44,16 @@ html, body
     float: right
     &:before
       content: '- '
-  #actions
-    color: #bbb
-    display: none
-    margin: 10px 0 0 10px
-    a
-      color: #999
-      text-decoration: none
 
-#footer
+#footer, #actions
   position: fixed
   bottom: 0
-  right: 0
-  padding: 5px
-  font-size: 10px
+  padding: 5px 10px
   color: #aaa
   a
-    color: #999
+    color: #777
+    text-decoration: none
+#footer
+  right: 0
+#actions
+  left: 0
