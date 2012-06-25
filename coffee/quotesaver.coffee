@@ -4,7 +4,7 @@ window.App =
       interpolate : /\{\{(.+?)\}\}/g
       evaluate : /\{\#(.+?)\#\}/g
     @template = _.template '''
-        <blockquote id='content'>{{quote}}</blockquote>
+        <blockquote id='content'>{{content}}</blockquote>
         <div id='author'>{{author}}</div>
       '''
     @actions_template = _.template '''

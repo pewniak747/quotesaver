@@ -10,11 +10,11 @@
 
 %body
   #quote
-    %blockquote#content= @quote['quote']
-    #author= @quote['author']
+    %blockquote#content= @quote.content
+    #author= @quote.author
   #actions
-    - if @quote['tweet']
-      %a#tweet{href: @quote['tweet'], target: '_new'} tweet it
+    - if @quote.tweet_url
+      %a#tweet{href: @quote.tweet_url, target: '_new'} tweet it
       |
     %a#next{href: '/'} next quote
   #footer

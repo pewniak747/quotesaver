@@ -6,7 +6,8 @@ require 'haml'
 require 'sass'
 require 'coffee-script'
 require 'uri'
-require './api.rb'
+require_relative './lib/api.rb'
+require_relative './lib/quote.rb'
 
 class QuoteSaver < Sinatra::Base
 
@@ -30,8 +31,6 @@ class QuoteSaver < Sinatra::Base
 
   def get_quote
     @quote = Quotes::Quotedb.get
-    tweet = "\"#{@quote['quote']}\" - #{@quote['author']}. http://quotes.pewniak747.info"
-    @quote['tweet'] = 'http://twitter.com?status=' + URI.encode(tweet) if tweet.size <= 140
   end
 
 end
