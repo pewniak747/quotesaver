@@ -4,7 +4,6 @@ window.App =
       interpolate : /\{\{(.+?)\}\}/g
       evaluate : /\{\#(.+?)\#\}/g
     @template = _.template '''
-        <div id='mark'>&ldquo;</div>
         <blockquote id='content'>{{quote}}</blockquote>
         <div id='author'>{{author}}</div>
       '''
@@ -30,5 +29,5 @@ $(document).ready ->
   $('#next').live 'click', (e)->
     e.preventDefault()
     App.getQuote()
-  
+
   App.initialize()
