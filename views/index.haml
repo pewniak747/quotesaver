@@ -10,13 +10,7 @@
 
 %body
   #quote
-    %blockquote#content= @quote.content
-    #author= @quote.author
   #actions
-    - if @quote.tweet_url
-      %a#tweet{href: @quote.tweet_url, target: '_new'} tweet it
-      |
-    %a#next{href: '/'} next quote
   #footer
     %p
       app and quotations curated by

@@ -8,19 +8,20 @@ window.App =
         <div id='author'>{{author}}</div>
       '''
     @actions_template = _.template '''
-        <div id='actions'>
-          {# if(typeof(tweet)!='undefined') { #}
-          <a href='{{tweet}}' id='tweet' target='_new'>tweet it</a>
-          |
-          {# }; #}
-          <a href='/' id='next'>next quote</a>
-        </div>
+        {# if(tweet_url != null) { #}
+        <a href='{{tweet_url}}' id='tweet' target='_new'>tweet it</a>
+        |
+        {# }; #}
+        <a href='/' id='next'>next quote</a>
       '''
   getQuote: =>
-    $.ajax 'quote.json', dataType: 'json', success: (response) =>
-      $('#quote').html(App.template(response))
-      $('#actions').replaceWith(App.actions_template(response))
-      $(window).trigger 'resize'
+    $.getJSON "/quote.json", App.setQuote
+  fetchQuote: (key)=>
+    $.getJSON "/#{key}.json", App.setQuote
+  setQuote: (quote)=>
+    $('#quote').html(App.template(quote))
+    $('#actions').html(App.actions_template(quote))
+    $(window).trigger 'resize'
 
 $(document).ready ->
   $(window).resize ->
@@ -29,5 +30,7 @@ $(document).ready ->
   $('#next').live 'click', (e)->
     e.preventDefault()
     App.getQuote()
+  if window.location.pathname != '/'
+    App.fetchQuote(window.location.pathname[1..-1])
 
   App.initialize()

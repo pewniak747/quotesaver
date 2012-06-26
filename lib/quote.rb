@@ -9,7 +9,7 @@ class Quote < OpenStruct
   end
 
   def tweet_url
-    tweet = "\"#{content}\" - #{author}. http://quotes.pewniak747.info"
+    tweet = "\"#{content}\" - #{author}. http://quotes.pewniak747.info/#{key}"
     if tweet.size <= 140
       'http://twitter.com?status=' + URI.encode(tweet)
     else nil
@@ -24,7 +24,8 @@ class Quote < OpenStruct
     {
       author: author,
       content: content,
-      key: key
+      key: key,
+      tweet_url: tweet_url
     }
   end
 

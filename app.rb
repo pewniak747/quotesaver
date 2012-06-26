@@ -18,7 +18,14 @@ class QuoteSaver < Sinatra::Base
   end
 
   get '/quote.json' do
+    content_type :json
     get_random_quote
+    @quote.to_json
+  end
+
+  get '/:key.json' do
+    content_type :json
+    @quote = ADAPTER.fetch(params[:key])
     @quote.to_json
   end
 
