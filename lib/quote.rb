@@ -1,7 +1,13 @@
 # encoding: utf-8
+require 'active_support/all'
 require 'ostruct'
 
 class Quote < OpenStruct
+  def initialize opts
+    super
+    set_key
+  end
+
   def tweet_url
     tweet = "\"#{content}\" - #{author}. http://quotes.pewniak747.info"
     if tweet.size <= 140
@@ -11,9 +17,19 @@ class Quote < OpenStruct
   end
 
   def to_json
+    as_json.to_json
+  end
+
+  def as_json
     {
       author: author,
-      content: content
-    }.to_json
+      content: content,
+      key: key
+    }
+  end
+
+  private
+  def set_key
+    self.key ||= SecureRandom.hex(8)
   end
 end

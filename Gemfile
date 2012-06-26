@@ -1,6 +1,8 @@
 source :rubygems
 
 gem 'rake'
+gem 'active_support'
+gem 'i18n'
 gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'haml'
@@ -10,5 +12,6 @@ gem 'httparty'
 gem 'json'
 gem 'xml-simple'
 gem 'capistrano'
+gem 'redis'
 gem 'unicorn'
 gem 'therubyracer'

@@ -10,17 +10,24 @@ require_relative './lib/api.rb'
 require_relative './lib/quote.rb'
 
 class QuoteSaver < Sinatra::Base
+  ADAPTER = Quotes::Bookshelf
 
   get '/' do
-    get_quote
-    haml :index, :format => :html5
+    get_random_quote
+    redirect "/#{@quote.key}"
   end
 
-  get '/quote.json' do
-    get_quote
+  get '/quotes.json' do
+    get_random_quote
     @quote.to_json
   end
 
+  get '/:key' do
+    @quote = ADAPTER.fetch(params[:key])
+    haml :index, :format => :html5
+  end
+
+  # assets
   get '/css/:name.css' do
     sass params[:name].to_sym, :views => 'sass'
   end
@@ -29,8 +36,8 @@ class QuoteSaver < Sinatra::Base
     coffee params[:name].to_sym, :views => 'coffee'
   end
 
-  def get_quote
-    @quote = Quotes::Quotedb.get
+  private
+  def get_random_quote
+    @quote = ADAPTER.get
   end
-
 end
