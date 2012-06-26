@@ -11,7 +11,6 @@ App =
     App.renderQuote(quote)
   renderQuote: (quote)=>
     $('#quote').html(JST['quote'](quote))
-    $('#actions').html(JST['actions'](quote))
     $(window).trigger 'resize'
   renderLoader: =>
     $('#quote').html(JST['loader']())
@@ -25,13 +24,13 @@ JST =
   quote: _.template '''
       <blockquote id='content'>{{content}}</blockquote>
       <div id='author'>{{author}}</div>
-    '''
-  actions: _.template '''
+      <div id='actions'>
       {# if(tweet_url != null) { #}
-      <a href='{{tweet_url}}' id='tweet' target='_new'>tweet it</a>
-      |
+      <a href='{{tweet_url}}' id='tweet' target='_new'> </a>
       {# }; #}
-      <a href='/' id='next'>next quote</a>
+      <a href='/' id='next'>next</a>
+      <div class='clearfix'></div>
+      </div>
     '''
   loader: _.template '''
       <div id="loader"></div>
