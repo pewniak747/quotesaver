@@ -17,7 +17,7 @@ class QuoteSaver < Sinatra::Base
     redirect "/#{@quote.key}"
   end
 
-  get '/quotes.json' do
+  get '/quote.json' do
     get_random_quote
     @quote.to_json
   end
