@@ -1,4 +1,4 @@
-window.App =
+App =
   initialize: ->
     _.templateSettings =
       interpolate : /\{\{(.+?)\}\}/g
@@ -19,6 +19,10 @@ window.App =
   fetchQuote: (key)=>
     $.getJSON "/#{key}.json", App.setQuote
   setQuote: (quote)=>
+    if history? && history.pushState?
+      history.pushState(quote, "Quote", "/#{quote.key}")
+    App.renderQuote(quote)
+  renderQuote: (quote)=>
     $('#quote').html(App.template(quote))
     $('#actions').html(App.actions_template(quote))
     $(window).trigger 'resize'
@@ -32,5 +36,7 @@ $(document).ready ->
     App.getQuote()
   if window.location.pathname != '/'
     App.fetchQuote(window.location.pathname[1..-1])
+  window.onpopstate = (event)=>
+    App.renderQuote(event.state) if event.state?
 
   App.initialize()
