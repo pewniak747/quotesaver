@@ -50,3 +50,5 @@ $(document).ready ->
     App.fetchQuote(window.location.pathname[1..-1])
   window.onpopstate = (event)=>
     App.renderQuote(event.state) if event.state?
+  $(window).bind 'keydown', (e)->
+    App.getQuote() if e.keyCode == 32
