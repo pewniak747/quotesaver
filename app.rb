@@ -11,6 +11,7 @@ require_relative './lib/quote.rb'
 
 class QuoteSaver < Sinatra::Base
   ADAPTER = Quotes::Bookshelf
+  set :protection, :except => :json_csrf
 
   get '/' do
     get_random_quote
