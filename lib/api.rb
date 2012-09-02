@@ -16,7 +16,10 @@ module Quotes
 
     def self.fetch key
       keys = all.find{ |q| q['key'].to_s == key.to_s }
-      Quote.new(keys)
+      if keys
+        Quote.new(keys)
+      else raise KeyError
+      end
     end
   end
 end

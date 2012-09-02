@@ -31,8 +31,12 @@ class QuoteSaver < Sinatra::Base
   end
 
   get '/:key' do
-    @quote = ADAPTER.fetch(params[:key])
-    haml :index, :format => :html5
+    begin
+      @quote = ADAPTER.fetch(params[:key])
+      haml :index, :format => :html5
+    rescue KeyError
+      redirect '/'
+    end
   end
 
   # assets
