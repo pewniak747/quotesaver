@@ -2,45 +2,21 @@
 require 'json'
 require 'httparty'
 require 'xmlsimple'
-require 'redis'
+require 'yaml'
 
 module Quotes
   class Bookshelf
-    def self.redis
-      @redis ||= Redis.new
+    def self.all
+      @quotes ||= YAML.load(File.open('db/quotes.yml'))
     end
     def self.get
-      key = redis.keys("quotes:*").sample.match(/^quotes:(.*)$/)[1]
+      key = all.sample['key']
       fetch(key)
     end
 
     def self.fetch key
-      keys = redis.hgetall("quotes:#{key}")
-      Quote.new(keys.merge(key: key))
-    end
-
-    def self.put quote
-      keys = quote.as_json.except(:key).to_a.flatten
-      redis.hmset("quotes:#{quote.key}", *keys)
-      redis.save
-    end
-  end
-
-  class Quotedb
-    include HTTParty
-    base_uri 'http://www.quotedb.com/quote/quote.php?action=random_quote_rss'
-
-    def self.parse data
-      data = XmlSimple.xml_in(data.body)['channel'][0]['item'][0]
-      Quote.new.tap do |q|
-        q.author = data['title'][0].strip
-        q.content = data['description'][0].gsub(/(^['"])|(['"]$)/, '').strip
-      end
-    end
-
-    def self.get
-      response = super('')
-      parse(response)
+      keys = all.find{ |q| q['key'].to_s == key.to_s }
+      Quote.new(keys)
     end
   end
 end

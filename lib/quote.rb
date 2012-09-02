@@ -5,7 +5,6 @@ require 'ostruct'
 class Quote < OpenStruct
   def initialize opts
     super
-    set_key
   end
 
   def tweet_url
@@ -27,10 +26,5 @@ class Quote < OpenStruct
       key: key,
       tweet_url: tweet_url
     }
-  end
-
-  private
-  def set_key
-    self.key ||= SecureRandom.hex(8)
   end
 end
