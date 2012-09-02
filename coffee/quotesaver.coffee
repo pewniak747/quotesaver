@@ -14,7 +14,6 @@ App =
     $(window).trigger 'resize'
   renderLoader: =>
     $('#next').html(JST['loader']())
-    $(window).trigger 'resize'
 
 _.templateSettings =
   interpolate : /\{\{(.+?)\}\}/g
@@ -28,7 +27,7 @@ JST =
       {# if(tweet_url != null) { #}
       <a href='{{tweet_url}}' id='tweet' target='_new'> </a>
       {# }; #}
-      <a href='/' id='next'>next</a>
+      <a href='/' id='next'>next &raquo;</a>
       <div class='clearfix'></div>
       </div>
     '''
