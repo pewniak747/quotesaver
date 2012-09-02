@@ -1,8 +1,8 @@
 set :application,       'quotesaver'
-set :repository,        "46.102.246.251:/opt/git/quotesaver.git"
+set :repository,        "pewniak747.info:/opt/git/quotesaver.git"
 set :scm,               :git
 set :use_sudo,          false
-set :host,              '46.102.246.251'
+set :host,              'pewniak747.info'
 
 role :web,  host
 role :app,  host
