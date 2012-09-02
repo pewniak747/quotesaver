@@ -13,7 +13,7 @@ App =
     $('#quote').html(JST['quote'](quote))
     $(window).trigger 'resize'
   renderLoader: =>
-    $('#quote').html(JST['loader']())
+    $('#next').html(JST['loader']())
     $(window).trigger 'resize'
 
 _.templateSettings =
